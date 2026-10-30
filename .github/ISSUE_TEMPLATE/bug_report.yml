@@ -1,0 +1,47 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found a way into a locked app without the PIN? Please [report it privately](https://github.com/aadityesh/fortify/security/advisories/new) instead.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the app you locked and how it was open (full screen, another desktop, minimized…).
+      placeholder: |
+        1. Lock Safari
+        2. Put Safari in full screen
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: macOS 15.2
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Fortify version
+      description: Fortify My Mac → About Fortify My Mac
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: "Optional. Run `/usr/bin/log show --last 5m --style compact --predicate 'subsystem == \"com.aadi.applock\"'` right after the problem and paste the output."
+      render: text

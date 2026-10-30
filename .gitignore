@@ -1,0 +1,11 @@
+build/
+.build/
+DerivedData/
+xcuserdata/
+**/xcuserdata/
+*.xcuserstate
+.DS_Store
+graphify-out/
+.agents/
+skills-lock.json
+.claude/skills/
