@@ -14,7 +14,7 @@ let package = Package(
                 "Authenticator.swift", "LockStore.swift", "LoginItem.swift",
                 "PresenceWatcher.swift",
             ],
-            sources: ["PresencePolicy.swift", "PinHasher.swift", "LockPolicy.swift", "TripleTapDetector.swift", "KeyCombo.swift"]
+            sources: ["PresencePolicy.swift", "PinHasher.swift", "LockPolicy.swift", "TripleTapDetector.swift", "KeyCombo.swift", "AppCategory.swift"]
         ),
         .testTarget(
             name: "PresencePolicyTests",

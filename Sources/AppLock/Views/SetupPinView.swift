@@ -1,5 +1,74 @@
 import SwiftUI
 
+/// First onboarding step: what Fortify should call you. Optional.
+struct NameStepView: View {
+    @Environment(AppState.self) private var state
+    @State private var name = ""
+    @FocusState private var focused: Bool
+
+    private static let maxLength = 40
+    private var trimmed: String { name.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+    var body: some View {
+        VStack(spacing: 18) {
+            BrandMark(size: 52)
+                .padding(.bottom, 4)
+
+            VStack(spacing: 8) {
+                Text("What's your name?")
+                    .font(Typo.display(34))
+                Text("Fortify uses it to greet you. You can change it any time in Settings.")
+                    .font(Typo.body)
+                    .foregroundStyle(Palette.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            TextField("Your name", text: $name)
+                .textFieldStyle(.plain)
+                .font(.system(size: 17, weight: .medium))
+                .multilineTextAlignment(.center)
+                .focused($focused)
+                .onSubmit(submit)
+                .padding(.horizontal, 14)
+                .frame(width: 280, height: 44)
+                .card(radius: 12)
+                .onChange(of: name) { _, value in
+                    if value.count > Self.maxLength { name = String(value.prefix(Self.maxLength)) }
+                }
+                .padding(.top, 6)
+
+            Button("Continue", action: submit)
+                .buttonStyle(PillButtonStyle())
+                .font(Typo.bodyMedium)
+                .disabled(trimmed.isEmpty)
+                .opacity(trimmed.isEmpty ? 0.45 : 1)
+                .animation(.easeOut(duration: 0.15), value: trimmed.isEmpty)
+
+            Button("Skip for now") { state.completeNameStep("") }
+                .buttonStyle(.plain)
+                .font(Typo.caption)
+                .foregroundStyle(Palette.textSecondary)
+        }
+        .padding(.horizontal, 40)
+        .frame(maxWidth: 460)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .topTrailing) {
+            // Clear the window's traffic lights, like the PIN step.
+            ThemeToggle().padding(EdgeInsets(top: 38, leading: 18, bottom: 0, trailing: 18))
+        }
+        .onAppear {
+            name = state.userName
+            focused = true
+        }
+    }
+
+    private func submit() {
+        guard !trimmed.isEmpty else { return }
+        state.completeNameStep(trimmed)
+    }
+}
+
 /// First-run screen: create the PIN and choose whether to use Touch ID.
 struct SetupPinView: View {
     @Environment(AppState.self) private var state
@@ -8,7 +77,7 @@ struct SetupPinView: View {
         @Bindable var store = state.store
 
         PinCreationFlow(
-            createTitle: "Create a PIN",
+            createTitle: state.userName.isEmpty ? "Create a PIN" : "Hi \(state.userName), create a PIN",
             createSubtitle: "You'll use it, or Touch ID, to open Fortify and any app you lock.",
             showsMark: true,
             // Clear the window's traffic lights.
@@ -186,6 +255,13 @@ struct PinCreationFlow: View {
         first = ""
         error = nil
     }
+}
+
+#Preview("Name step") {
+    NameStepView()
+        .environment(AppState.preview(.name))
+        .frame(width: 760, height: 680)
+        .background(Palette.background)
 }
 
 #Preview("Onboarding · Light") {

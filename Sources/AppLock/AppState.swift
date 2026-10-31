@@ -5,6 +5,8 @@ import Observation
 @Observable
 final class AppState {
     enum Phase: Equatable {
+        /// Onboarding: what should Fortify call you?
+        case name
         /// Onboarding: create the PIN.
         case setup
         /// Onboarding: grant Accessibility so locked apps can be hidden.
@@ -41,8 +43,38 @@ final class AppState {
         }
     }
 
+    /// What Fortify calls the user; asked during onboarding. Empty: no name.
+    var userName: String {
+        didSet { UserDefaults.standard.set(userName, forKey: "userName") }
+    }
+
+    /// "Good evening, Aadi", or a plain welcome without a name.
+    var greeting: String {
+        Greeting.text(name: userName, hour: Calendar.current.component(.hour, from: Date()))
+    }
+
+    /// How the app list shows apps.
+    var appListLayout: AppListLayout {
+        didSet { UserDefaults.standard.set(appListLayout.rawValue, forKey: "appListLayout") }
+    }
+
+    /// Show the app list in sections by category.
+    var groupByCategory: Bool {
+        didSet { UserDefaults.standard.set(groupByCategory, forKey: "groupByCategory") }
+    }
+
+    /// Apps the user moved to another category: bundle ID → AppCategory raw value.
+    private var categoryOverrides: [String: String] {
+        didSet { UserDefaults.standard.set(categoryOverrides, forKey: "appCategories") }
+    }
+
     init() {
-        phase = store.hasPIN ? .locked : .setup
+        let name = UserDefaults.standard.string(forKey: "userName") ?? ""
+        userName = name
+        phase = store.hasPIN ? .locked : Self.onboardingStart(name: name)
+        appListLayout = AppListLayout(rawValue: UserDefaults.standard.string(forKey: "appListLayout") ?? "") ?? .list
+        groupByCategory = UserDefaults.standard.object(forKey: "groupByCategory") as? Bool ?? true
+        categoryOverrides = UserDefaults.standard.dictionary(forKey: "appCategories") as? [String: String] ?? [:]
         showMenuBarIcon = UserDefaults.standard.object(forKey: "showMenuBarIcon") as? Bool ?? true
         theme = ThemePreference(rawValue: UserDefaults.standard.string(forKey: "appearance") ?? "") ?? .system
         // The old "theme" was pinned by the sun/moon button without saying so,
@@ -52,6 +84,32 @@ final class AppState {
 
     func applyTheme() {
         NSApp.appearance = theme.appearance
+    }
+
+    /// Onboarding asks for a name first, unless there already is one.
+    private static func onboardingStart(name: String) -> Phase {
+        name.isEmpty ? .name : .setup
+    }
+
+    /// Onboarding, name step done (or skipped).
+    func completeNameStep(_ name: String) {
+        userName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        phase = .setup
+    }
+
+    // MARK: App categories
+
+    func category(of app: InstalledApp) -> AppCategory {
+        categoryOverrides[app.id].flatMap(AppCategory.init(rawValue:)) ?? app.automaticCategory
+    }
+
+    func isCategoryOverridden(_ app: InstalledApp) -> Bool {
+        categoryOverrides[app.id] != nil
+    }
+
+    /// Moves an app to a category; its own category clears the override.
+    func setCategory(_ category: AppCategory, for app: InstalledApp) {
+        categoryOverrides[app.id] = category == app.automaticCategory ? nil : category.rawValue
     }
 
     func completeSetup(pin: String) {
@@ -100,7 +158,7 @@ final class AppState {
         if phase == .unlocked || phase == .permissions {
             lockLog.notice("Main window locked (\(reason, privacy: .public))")
         }
-        phase = store.hasPIN ? .locked : .setup
+        phase = store.hasPIN ? .locked : Self.onboardingStart(name: userName)
         showSettings = false
     }
 

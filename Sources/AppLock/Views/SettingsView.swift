@@ -149,6 +149,15 @@ struct SettingsView: View {
     private var generalSection: some View {
         @Bindable var state = state
         return section("General") {
+            row(title: "Your name", subtitle: state.userName.isEmpty
+                ? "Add your name and Fortify greets you with it."
+                : "Fortify greets you as \(state.userName).") {
+                TextField("Your name", text: $state.userName)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 180)
+                    .onSubmit { state.userName = state.userName.trimmingCharacters(in: .whitespacesAndNewlines) }
+            }
+            divider
             row(title: "Appearance", subtitle: appearanceSubtitle) {
                 Picker("Appearance", selection: $state.theme) {
                     ForEach(ThemePreference.allCases, id: \.self) { Text($0.label).tag($0) }

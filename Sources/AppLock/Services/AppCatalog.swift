@@ -65,7 +65,17 @@ final class AppCatalog {
                           !excludedIDs.contains(id),
                           byID[id] == nil else { continue }
                     let name = (fm.displayName(atPath: item.path) as NSString).deletingPathExtension
-                    byID[id] = InstalledApp(id: id, name: name, url: item)
+                    let info = bundle.infoDictionary
+                    let category = AppCategory.automatic(
+                        bundleID: id,
+                        declaredType: info?["LSApplicationCategoryType"] as? String,
+                        isWebApp: PresencePolicy.isWebApp(
+                            bundleIdentifier: id,
+                            executableName: info?["CFBundleExecutable"] as? String,
+                            info: info
+                        )
+                    )
+                    byID[id] = InstalledApp(id: id, name: name, url: item, automaticCategory: category)
                 } else if depth < 2,
                           (try? item.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true {
                     // e.g. /Applications/Utilities, vendor folders like /Applications/Adobe …

@@ -8,6 +8,9 @@ struct RootView: View {
             Palette.background.ignoresSafeArea()
 
             switch state.phase {
+            case .name:
+                NameStepView()
+                    .transition(.opacity)
             case .setup:
                 SetupPinView()
                     .transition(.opacity)

@@ -20,9 +20,10 @@ struct UnlockView: View {
             BrandMark(size: 52)
 
             VStack(spacing: 8) {
-                Text("Welcome back")
+                Text(state.greeting)
                     .font(Typo.display(34))
-                Text(state.quitAfterUnlock ? "Unlock to quit AppLock." : "Type your PIN to unlock AppLock.")
+                    .multilineTextAlignment(.center)
+                Text(state.quitAfterUnlock ? "Unlock to quit Fortify." : "Type your PIN to unlock Fortify.")
                     .font(Typo.body)
                     .foregroundStyle(Palette.textSecondary)
             }

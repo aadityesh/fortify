@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Resources/Brand/fortify-logo-v2.png" width="128" alt="Fortify: App Lock icon">
+  <img src="Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256@2x.png" width="128" alt="Fortify: App Lock icon">
 </p>
 
 <h1 align="center">Fortify: App Lock</h1>
@@ -34,9 +34,13 @@ and the app stays hidden until you unlock it with Touch ID or your PIN.
 - **Lock shortcut**: press <kbd>⌃</kbd><kbd>⌘</kbd><kbd>L</kbd> in an
   unlocked app to lock it straight away and go back to the app you were in.
   Change it or turn it off in Settings.
+- **Organize your apps**: grouped by category (browsers, messaging, web apps
+  and more), shown as a list, cards or a grid. Right-click an app to move it
+  to another category.
 - **Lock All** from the menu bar.
 - **Forgot your PIN?** Confirm with your Mac password and choose a new one.
 - **Light and dark**: follows your Mac, or pick one in Settings.
+- **Greets you by name**: tell it your name during setup, or later in Settings.
 
 ## Download
 

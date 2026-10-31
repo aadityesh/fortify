@@ -3,6 +3,18 @@
 All notable changes to Fortify: App Lock. Versions follow
 [Semantic Versioning](https://semver.org).
 
+## 1.0.1 (2026-10-31)
+
+- Setup asks for your name, and Fortify greets you with it on the unlock
+  screen and the app list. Change it in Settings → General.
+- The app list groups apps by category: Browsers, Web Apps, Social &
+  Messaging, Productivity and more. Right-click an app to move it to another
+  category; click a heading to fold it away.
+- Choose how the app list looks: list, cards or grid.
+- Search also matches category names.
+- The unlock screen said "AppLock"; it now says Fortify.
+- The README uses the app icon as its logo.
+
 ## 1.0.0 (2026-10-31)
 
 First public release. Fortify is now free and open source.
