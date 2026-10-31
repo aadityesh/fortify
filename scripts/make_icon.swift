@@ -1,5 +1,5 @@
 // Renders the AppIcon asset (PNGs + Contents.json) into the given .appiconset folder:
-// Fortify My Mac's lime (#D4F57A) fortress shield with a keyhole, on a black tile.
+// Fortify's lime (#D4F57A) fortress shield with a keyhole, on a black tile.
 // Usage: swift scripts/make_icon.swift Resources/Assets.xcassets/AppIcon.appiconset
 // Keep the geometry in sync with FortressShape in Sources/AppLock/Views/Components.swift.
 import AppKit

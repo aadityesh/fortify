@@ -15,10 +15,10 @@ struct PermissionStepView: View {
                 .background(Palette.accent, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
 
             VStack(spacing: 8) {
-                Text("Let Fortify My Mac hide locked apps")
+                Text("Let Fortify hide locked apps")
                     .font(Typo.display(34))
                     .multilineTextAlignment(.center)
-                Text("macOS only lets an app hide other apps with Accessibility access. Fortify My Mac uses it for one thing: keeping a locked app out of sight until you unlock it.")
+                Text("macOS only lets an app hide other apps with Accessibility access. Fortify uses it for one thing: keeping a locked app out of sight until you unlock it.")
                     .font(Typo.body)
                     .foregroundStyle(Palette.textSecondary)
                     .multilineTextAlignment(.center)

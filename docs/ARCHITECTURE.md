@@ -1,6 +1,6 @@
 # Architecture
 
-Fortify My Mac is a menu bar app written in Swift with SwiftUI and AppKit. It
+Fortify: App Lock is a menu bar app written in Swift with SwiftUI and AppKit. It
 needs the Accessibility permission and nothing else.
 
 ## Runtime map

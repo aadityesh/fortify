@@ -1,11 +1,11 @@
-# Contributing to Fortify My Mac
+# Contributing to Fortify: App Lock
 
 Thanks for helping. Bug reports, ideas and pull requests are all welcome.
 
 ## Reporting a bug
 
 [Open an issue](https://github.com/aadityesh/fortify/issues/new/choose) with
-your macOS version, the Fortify version (Fortify My Mac → About), the app you
+your macOS version, the Fortify version (Fortify: App Lock → About), the app you
 locked, and the steps that show the problem. Lock bugs often depend on how the
 app was open (full screen, another desktop, minimized), so say that too.
 
@@ -56,5 +56,7 @@ By contributing you agree that your work is released under the
 
 1. Bump `MARKETING_VERSION` in the Xcode project and add the changes to
    [CHANGELOG.md](CHANGELOG.md).
-2. Run `./scripts/make-dmg.sh`.
+2. Run `./scripts/make-dmg.sh`. With a Developer ID certificate it also
+   notarizes and staples the DMG; this needs notarytool credentials saved once
+   (see the comment at the top of the script).
 3. Create a GitHub release tagged `v<version>` and attach the DMG.

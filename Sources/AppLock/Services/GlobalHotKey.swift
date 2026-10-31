@@ -16,7 +16,7 @@ final class GlobalHotKey {
         unregister()
         guard let combo else { return true }
         installHandler()
-        // 'FMML': Fortify My Mac Lock.
+        // 'FMML': Fortify Lock.
         let id = EventHotKeyID(signature: 0x464D_4D4C, id: 1)
         let status = RegisterEventHotKey(combo.keyCode, combo.carbonModifiers, id, GetEventDispatcherTarget(), 0, &hotKey)
         guard status == noErr else {

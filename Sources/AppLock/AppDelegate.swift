@@ -32,7 +32,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Accessibility calls are synchronous; the default 6s timeout would let one
-        // hung app freeze Fortify My Mac (and the lock card) for seconds at a time.
+        // hung app freeze Fortify (and the lock card) for seconds at a time.
         AXUIElementSetMessagingTimeout(AXUIElementCreateSystemWide(), 0.5)
         state.applyTheme()
         // The app may have moved or been renamed since start-at-login was turned on;
@@ -72,7 +72,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
     /// ⌘H hides the window, so it needs unlocking again.
     func applicationDidHide(_ notification: Notification) {
-        state.lock(reason: "Fortify My Mac hidden")
+        state.lock(reason: "Fortify hidden")
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -112,7 +112,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         state.lock(reason: "window closed")
         // Disappear from the Dock and app switcher; keep running in the background.
         // Destroy the window too: a closed window still belongs to its Space, and
-        // activating Fortify My Mac for a lock card would make macOS switch to that
+        // activating Fortify for a lock card would make macOS switch to that
         // Space. It's rebuilt (at the saved position) when the app is reopened.
         let closing = notification.object as? NSWindow
         DispatchQueue.main.async { [weak self] in
@@ -149,7 +149,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         return window
     }
 
-    /// Activating Fortify My Mac for a lock card would switch to the Space our
+    /// Activating Fortify for a lock card would switch to the Space our
     /// window is on; close it instead (it's locked when reopened anyway).
     private func closeWindowOnOtherSpace() {
         guard let window, window.isVisible, !window.isOnActiveSpace else { return }

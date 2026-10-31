@@ -25,7 +25,7 @@ final class AppMonitor {
     /// Sleep or screen lock: AppLock's own window should lock too.
     var onSessionLocked: () -> Void = {}
     /// Just before a card appears (e.g. to put away our own window on another Space,
-    /// so activating Fortify My Mac doesn't switch Spaces to it).
+    /// so activating Fortify doesn't switch Spaces to it).
     var onWillPresentCard: () -> Void = {}
 
     init(store: LockStore) {
@@ -176,7 +176,7 @@ final class AppMonitor {
         notifier.appLocked(app)
     }
 
-    /// Ordinary apps (Dock icon), not Fortify My Mac itself.
+    /// Ordinary apps (Dock icon), not Fortify itself.
     private func noteRecent(_ app: NSRunningApplication) {
         guard app.activationPolicy == .regular,
               app.processIdentifier != ProcessInfo.processInfo.processIdentifier else { return }

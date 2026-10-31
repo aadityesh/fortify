@@ -35,7 +35,7 @@ body:
     id: version
     attributes:
       label: Fortify version
-      description: Fortify My Mac → About Fortify My Mac
+      description: Fortify: App Lock → About Fortify: App Lock
       placeholder: 1.0.0
     validations:
       required: true

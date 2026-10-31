@@ -130,11 +130,11 @@ struct UnlockView: View {
 
     private func requestTouchID() {
         error = nil
-        biometrics.begin(reason: "unlock Fortify My Mac") { result in
+        biometrics.begin(reason: "unlock Fortify") { result in
             switch result {
             case .success:
                 guard windowIsShowing else {
-                    lockLog.notice("Ignored Touch ID for Fortify My Mac's window: it isn't showing")
+                    lockLog.notice("Ignored Touch ID for Fortify's window: it isn't showing")
                     return
                 }
                 state.didAuthenticate()
@@ -148,7 +148,7 @@ struct UnlockView: View {
     private func forgotPIN() {
         biometrics.cancel()
         error = nil
-        ownerCheck.begin(reason: "reset your Fortify My Mac PIN") { result in
+        ownerCheck.begin(reason: "reset your Fortify PIN") { result in
             switch result {
             case .success:
                 state.phase = .resetPIN

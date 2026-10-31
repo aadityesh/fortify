@@ -2,7 +2,7 @@ import AppKit
 
 /// The lock itself: keeps every locked app hidden until it's unlocked, whatever
 /// else is going on (a card up or not, notifications missed, apps already
-/// running when Fortify My Mac starts, "Lock All", relocking).
+/// running when Fortify starts, "Lock All", relocking).
 ///
 /// Checks four times a second and immediately when asked. An app that
 /// refuses to hide (some apps reject it while busy, in full screen or while
@@ -575,7 +575,7 @@ private final class CoverView: NSView {
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    // Fortify My Mac isn't active when a cover is clicked; the first click must count.
+    // Fortify isn't active when a cover is clicked; the first click must count.
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
     override func mouseDown(with event: NSEvent) {

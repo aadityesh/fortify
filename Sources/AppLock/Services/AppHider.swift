@@ -96,7 +96,7 @@ enum AppHider {
         if hasAccessibility {
             _ = setHidden(false, NSRunningApplication.current)
         }
-        lockLog.notice("Fortify My Mac was hidden; unhid it (still hidden=\(NSApp.isHidden))")
+        lockLog.notice("Fortify was hidden; unhid it (still hidden=\(NSApp.isHidden))")
     }
 
     static func unhide(_ app: NSRunningApplication) {

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="Resources/Brand/fortify-logo-v2.png" width="128" alt="Fortify My Mac icon">
+  <img src="Resources/Brand/fortify-logo-v2.png" width="128" alt="Fortify: App Lock icon">
 </p>
 
-<h1 align="center">Fortify My Mac</h1>
+<h1 align="center">Fortify: App Lock</h1>
 
 <p align="center">
   Lock any app on your Mac behind Touch ID or a PIN.<br>
@@ -40,22 +40,11 @@ and the app stays hidden until you unlock it with Touch ID or your PIN.
 
 ## Download
 
-1. Download **Fortify-My-Mac-&lt;version&gt;.dmg** from the
+1. Download **Fortify-App-Lock-&lt;version&gt;.dmg** from the
    [latest release](https://github.com/aadityesh/fortify/releases/latest).
-2. Open it and drag **Fortify My Mac** into **Applications**.
-3. Open Fortify My Mac from Applications. The first time, macOS says it
-   "could not verify" the app. That's because the app isn't notarized with
-   Apple (that needs a paid Apple developer account), not because anything is
-   wrong with it. To open it anyway:
-   - Click **Done**, then open **System Settings → Privacy & Security**.
-   - Scroll down to "Fortify My Mac was blocked" and click **Open Anyway**.
-   - Confirm with your Mac password. You only need to do this once.
-
-   Prefer Terminal? This does the same thing:
-
-   ```sh
-   xattr -dr com.apple.quarantine "/Applications/Fortify My Mac.app"
-   ```
+2. Open it and drag **Fortify App Lock** into **Applications**.
+3. Open Fortify from Applications. The app is signed with a Developer ID and
+   notarized by Apple, so it opens like any other download.
 4. Create your PIN and allow **Accessibility** when asked (see below for why).
 
 Not sure about running a download? [Build it yourself](#build-from-source)
@@ -103,7 +92,7 @@ macOS then asks for the Accessibility permission again after each rebuild.
 | Command | What it does |
 |---|---|
 | `./scripts/install.sh` | Build, install into /Applications, and open |
-| `./scripts/make-dmg.sh` | Build `build/Fortify-My-Mac-<version>.dmg` for a release |
+| `./scripts/make-dmg.sh` | Build `build/Fortify-App-Lock-<version>.dmg` for a release |
 | `swift test` | Run the unit tests |
 
 How the app is put together: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).

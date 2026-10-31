@@ -9,7 +9,7 @@ struct SetupPinView: View {
 
         PinCreationFlow(
             createTitle: "Create a PIN",
-            createSubtitle: "You'll use it, or Touch ID, to open Fortify My Mac and any app you lock.",
+            createSubtitle: "You'll use it, or Touch ID, to open Fortify and any app you lock.",
             showsMark: true,
             // Clear the window's traffic lights.
             barInsets: EdgeInsets(top: 38, leading: 18, bottom: 0, trailing: 18),

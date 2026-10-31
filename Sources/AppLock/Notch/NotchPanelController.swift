@@ -20,7 +20,7 @@ final class NotchPanel: NSPanel {
     override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect { frameRect }
 }
 
-/// Fortify My Mac usually isn't active when the card is clicked (that click is
+/// Fortify usually isn't active when the card is clicked (that click is
 /// how focus comes back); the first click must reach the card, not just activate.
 final class FirstClickHostingView<Content: View>: NSHostingView<Content> {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
@@ -256,7 +256,7 @@ final class NotchPanelController {
 
     // MARK: - Focus
 
-    /// Activates Fortify My Mac and makes the card key. Starts a short hand-off
+    /// Activates Fortify and makes the card key. Starts a short hand-off
     /// period in which focus taken by others (macOS passing it along after
     /// hiding the locked app) is taken back.
     private func requestFocus() {
@@ -398,7 +398,7 @@ final class NotchPanelController {
             lastRecovery = .none
             return
         }
-        // A hidden Fortify My Mac draws no windows at all.
+        // A hidden Fortify draws no windows at all.
         if NSApp.isHidden {
             AppHider.unhideSelf()
             panel.orderFrontRegardless()
@@ -538,7 +538,7 @@ final class NotchPanelController {
         model.focusHint = nil
         model.mode = .confirmingOwner
         lockLog.notice("Forgot PIN on the card for \(app.bundleIdentifier ?? "?", privacy: .public); asking for the Mac password")
-        ownerCheck.begin(reason: "reset your Fortify My Mac PIN") { [weak self] result in
+        ownerCheck.begin(reason: "reset your Fortify PIN") { [weak self] result in
             guard let self, self.generation == generation, self.currentApp != nil, !self.isDismissing else { return }
             switch result {
             case .success:

@@ -32,7 +32,7 @@ final class LockNotifier: NSObject, UNUserNotificationCenterDelegate {
         }
     }
 
-    /// Shown as a banner even when Fortify My Mac is the active app.
+    /// Shown as a banner even when Fortify is the active app.
     nonisolated func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification

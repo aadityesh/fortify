@@ -1,9 +1,9 @@
 # Changelog
 
-All notable changes to Fortify My Mac. Versions follow
+All notable changes to Fortify: App Lock. Versions follow
 [Semantic Versioning](https://semver.org).
 
-## 1.0.0 (2026-10-30)
+## 1.0.0 (2026-10-31)
 
 First public release. Fortify is now free and open source.
 

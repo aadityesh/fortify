@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		A1B2C3D40000000000000001 /* Fortify My Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fortify My Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2C3D40000000000000001 /* Fortify App Lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fortify App Lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -60,7 +60,7 @@
 		A1B2C3D40000000000000005 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1B2C3D40000000000000001 /* Fortify My Mac.app */,
+				A1B2C3D40000000000000001 /* Fortify App Lock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			packageProductDependencies = (
 			);
 			productName = AppLock;
-			productReference = A1B2C3D40000000000000001 /* Fortify My Mac.app */;
+			productReference = A1B2C3D40000000000000001 /* Fortify App Lock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +211,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aadi.applock;
 				PRODUCT_MODULE_NAME = AppLock;
-				PRODUCT_NAME = "Fortify My Mac";
+				PRODUCT_NAME = "Fortify App Lock";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -237,7 +237,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aadi.applock;
 				PRODUCT_MODULE_NAME = AppLock;
-				PRODUCT_NAME = "Fortify My Mac";
+				PRODUCT_NAME = "Fortify App Lock";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

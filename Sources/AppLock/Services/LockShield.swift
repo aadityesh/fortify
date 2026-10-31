@@ -189,7 +189,7 @@ final class ShieldView: NSView {
         title.stringValue = name.isEmpty ? "Locked" : "\(name) is locked"
     }
 
-    // Fortify My Mac isn't active when the shield is clicked; the first click must count.
+    // Fortify isn't active when the shield is clicked; the first click must count.
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
     override func mouseDown(with event: NSEvent) {
